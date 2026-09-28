@@ -1,4 +1,6 @@
 #include "cache.h"
+// g++ -std=c++17 server.cpp cache.cpp -o cache_server
+//./cache_server
 
 #include <cstdlib>
 #include <iostream>
@@ -90,24 +92,6 @@ int main() {
         }
 
         myCache.insert(accountNo, stoll(ammount));
-
-      } else if (request.substr(0, 7) == "UPDATE ") {
-        string amount, accountNo;
-        int n = request.size();
-        bool acc_go = true;
-        for (int i = 7; i < n; i++) {
-          if (request[i] == ' ') {
-            acc_go = false;
-            continue;
-          }
-          if (request[i] == '\n' || request[i] == '\r')
-            continue;
-          if (acc_go)
-            accountNo += request[i];
-          else
-            amount += request[i];
-        }
-        myCache.update(accountNo, stoll(amount));
       }
     }
 
